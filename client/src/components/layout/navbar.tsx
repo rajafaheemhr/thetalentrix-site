@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, Users } from "lucide-react";
+import { Menu } from "lucide-react";
+import logoPath from "@assets/thetalentrix_logo_1753289467568.jpg";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -24,7 +25,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <Users className="h-8 w-8 text-primary" />
+            <img src={logoPath} alt="Talentrix" className="h-10 w-10" />
             <span className="text-xl font-bold text-primary">Talentrix</span>
           </Link>
 
