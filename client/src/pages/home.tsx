@@ -76,21 +76,21 @@ export default function Home() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
-                Find Your Dream Job with Talentrix
+              <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight float-animation">
+                Find Your Dream Job with <span className="pulse-glow">Talentrix</span> ✨
               </h1>
               <p className="text-xl mb-8 opacity-90">
-                Connect talented professionals with leading companies. We're your trusted partner in career growth and recruitment excellence.
+                Connect talented professionals with leading companies. We're your trusted partner in career growth and recruitment excellence 🚀
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/jobs">
-                  <Button size="lg" className="btn-talentrix">
-                    Explore Jobs
+                  <Button size="lg" className="btn-gradient text-white font-semibold px-8 py-3 rounded-full">
+                    Explore Jobs 🔍
                   </Button>
                 </Link>
                 <Link href="/talent-pool">
-                  <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
-                    Join Talent Pool
+                  <Button size="lg" className="bg-white/20 backdrop-blur-md border-white/30 text-white hover:bg-white/30 rounded-full px-8 py-3 font-semibold neon-accent">
+                    Join Talent Pool 💼
                   </Button>
                 </Link>
               </div>
@@ -107,7 +107,7 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gradient-to-br from-purple-50 via-pink-50 to-yellow-50">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -144,23 +144,25 @@ export default function Home() {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6">Our Services</h2>
+            <h2 className="text-4xl font-bold mb-6">Our Services 💫</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Comprehensive recruitment solutions designed to accelerate your career journey
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {services.map((service, index) => (
-              <Card key={index} className="service-card group">
+              <Card key={index} className="modern-card group neon-accent">
                 <CardContent className="p-8">
-                  <div className="service-icon group-hover:scale-110 transition-transform duration-300">
-                    <service.icon className="h-8 w-8" />
+                  <div className="service-icon group-hover:scale-110 transition-transform duration-300 mb-4">
+                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mb-4">
+                      <service.icon className="h-8 w-8 text-white" />
+                    </div>
                   </div>
                   <h3 className="text-xl font-semibold mb-4">{service.title}</h3>
                   <p className="text-gray-600 mb-6">{service.description}</p>
                   <Link href={service.href}>
-                    <Button variant="outline" className="btn-talentrix-outline">
-                      Get Started
+                    <Button className="btn-gradient text-white rounded-full px-6 py-2 text-sm font-semibold">
+                      Get Started ⚡
                     </Button>
                   </Link>
                 </CardContent>
@@ -174,20 +176,27 @@ export default function Home() {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6">What Our Clients Say</h2>
+            <h2 className="text-4xl font-bold mb-6">What Our Clients Say 💬</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="testimonial-card">
+              <Card key={index} className="modern-card hover:scale-105 transition-all duration-300">
                 <CardContent className="p-8">
-                  <img 
-                    src={testimonial.image} 
-                    alt={testimonial.name}
-                    className="testimonial-avatar"
-                  />
-                  <p className="text-gray-600 mb-6 italic">"{testimonial.content}"</p>
-                  <h4 className="font-semibold mb-1">{testimonial.name}</h4>
-                  <p className="text-sm text-gray-500">{testimonial.role}</p>
+                  <div className="flex justify-center mb-6">
+                    <div className="relative">
+                      <img 
+                        src={testimonial.image} 
+                        alt={testimonial.name}
+                        className="w-16 h-16 rounded-full object-cover border-4 border-gradient-primary"
+                      />
+                      <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-xs">⭐</div>
+                    </div>
+                  </div>
+                  <p className="text-gray-600 mb-6 italic text-center">"{testimonial.content}"</p>
+                  <div className="text-center">
+                    <h4 className="font-semibold mb-1">{testimonial.name}</h4>
+                    <p className="text-sm text-gray-500">{testimonial.role}</p>
+                  </div>
                 </CardContent>
               </Card>
             ))}
