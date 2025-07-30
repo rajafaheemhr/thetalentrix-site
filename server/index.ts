@@ -2,6 +2,33 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
+// Load environment variables from .env file if it exists
+async function loadEnvFile() {
+  try {
+    const fs = await import("fs");
+    const path = await import("path");
+    const envPath = path.resolve(process.cwd(), ".env");
+
+    if (fs.existsSync(envPath)) {
+      const envContent = fs.readFileSync(envPath, "utf-8");
+      envContent.split("\n").forEach(line => {
+        const [key, ...valueParts] = line.split("=");
+        if (key && valueParts.length > 0 && !key.startsWith("#")) {
+          const value = valueParts.join("=").trim();
+          if (!process.env[key.trim()]) {
+            process.env[key.trim()] = value;
+          }
+        }
+      });
+    }
+  } catch (error) {
+    console.warn("Could not load .env file:", error);
+  }
+}
+
+// Load environment variables
+await loadEnvFile();
+
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -61,11 +88,8 @@ app.use((req, res, next) => {
   // this serves both the API and the client.
   // It is the only port that is not firewalled.
   const port = parseInt(process.env.PORT || '5000', 10);
-  server.listen({
-    port,
-    host: "0.0.0.0",
-    reusePort: true,
-  }, () => {
-    log(`serving on port ${port}`);
-  });
+  server.listen(port, '127.0.0.1', () => {
+  log(`serving on port ${port}`);
+});
+
 })();

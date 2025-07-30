@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
-import { 
-  FileText, 
-  MessageSquare, 
-  Handshake, 
+import {
+  FileText,
+  MessageSquare,
+  Handshake,
   Building,
   Users,
   Clock,
@@ -77,10 +77,10 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight float-animation">
-                Find Your Dream Job with <span className="pulse-glow">Talentrix</span> ✨
+                Find Your Dream Job with <span className="pulse-glow">Talentrix</span>
               </h1>
               <p className="text-xl mb-8 opacity-90">
-                Connect talented professionals with leading companies. We're your trusted partner in career growth and recruitment excellence 🚀
+                Connect talented professionals with leading companies. We're your trusted partner in career growth and recruitment excellence
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/jobs">
@@ -96,9 +96,9 @@ export default function Home() {
               </div>
             </div>
             <div className="relative">
-              <img 
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop" 
-                alt="Professional team collaboration" 
+              <img
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop"
+                alt="Professional team collaboration"
                 className="rounded-2xl shadow-2xl"
               />
             </div>
@@ -111,9 +111,9 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <img 
-                src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop" 
-                alt="Modern office workspace" 
+              <img
+                src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop"
+                alt="Modern office workspace"
                 className="rounded-2xl shadow-lg"
               />
             </div>
@@ -184,8 +184,8 @@ export default function Home() {
                 <CardContent className="p-8">
                   <div className="flex justify-center mb-6">
                     <div className="relative">
-                      <img 
-                        src={testimonial.image} 
+                      <img
+                        src={testimonial.image}
                         alt={testimonial.name}
                         className="w-16 h-16 rounded-full object-cover border-4 border-gradient-primary"
                       />
@@ -203,20 +203,33 @@ export default function Home() {
           </div>
 
           {/* Partner Company Logos */}
-          <div className="mt-16">
-            <div className="text-center mb-8">
-              <h3 className="text-lg text-gray-600">Trusted by Leading Companies</h3>
-            </div>
-            <div className="grid grid-cols-3 md:grid-cols-6 gap-8 items-center justify-items-center">
-              {companyLogos.map((logo, index) => (
-                <img 
-                  key={index}
-                  src={logo} 
-                  alt={`Company logo ${index + 1}`}
-                  className="company-logo h-12 w-auto"
-                />
-              ))}
-            </div>
+          <h2 className="text-4xl font-bold mb-6 text-center mt-16">Trusted By our Partners</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-10 items-center justify-center my-8">
+            <img
+              src="https://cdn-cliej.nitrocdn.com/wgZiPBuapcaGENrRxsBuGekXzvRJGrBF/assets/images/optimized/rev-d940329/apimio.com/wp-content/uploads/2021/05/cropped-frompsdapimio-e1621591394673.png"
+              alt="Apimio"
+              className="h-12 object-contain"
+            />
+            <img
+              src="https://ringoffice.com/wp-content/uploads/2025/03/Asset-3@4x-1-1024x296.webp"
+              alt="Ring Office"
+              className="h-12 object-contain"
+            />
+            <img
+              src="https://cdn-edepf.nitrocdn.com/tPDQwwltJkKRVcYDAvZvZUoJoKSDAwlD/assets/images/optimized/rev-17d0dd8/siffar.com/wp-content/uploads/2024/11/siffar-logo-png-e1606198668642.png"
+              alt="Siffar"
+              className="h-12 object-contain"
+            />
+            <img
+              src="https://www.analyticodigital.com/wp-content/uploads/2024/07/analytico-logo-300x56.webp"
+              alt="Analytico"
+              className="h-12 object-contain"
+            />
+             <img
+              src="https://brisc.ai/hubfs/White%20brisc%20wordmark.svg"
+              alt="Brisc AI"
+              className="h-12 object-contain"
+              />
           </div>
         </div>
       </section>

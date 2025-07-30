@@ -17,8 +17,8 @@ export default function Footer() {
               Connecting exceptional talent with leading companies. Your trusted partner in career growth and recruitment excellence.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-primary transition-colors">
-                <Linkedin className="h-6 w-6" />
+              <a href="https://www.linkedin.com/company/thetalentrix/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-colors">
+  <Linkedin className="h-6 w-6" />
               </a>
               <a href="#" className="text-gray-400 hover:text-primary transition-colors">
                 <Twitter className="h-6 w-6" />

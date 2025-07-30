@@ -1,7 +1,8 @@
 import { defineConfig } from "drizzle-kit";
 
-if (!process.env.DATABASE_URL) {
-  throw new Error("DATABASE_URL, ensure the database is provisioned");
+// Only require DATABASE_URL if we're actually using the database
+if (process.env.USE_DATABASE === "true" && !process.env.DATABASE_URL) {
+  throw new Error("DATABASE_URL is required when USE_DATABASE=true");
 }
 
 export default defineConfig({
@@ -9,6 +10,6 @@ export default defineConfig({
   schema: "./shared/schema.ts",
   dialect: "postgresql",
   dbCredentials: {
-    url: process.env.DATABASE_URL,
+    url: process.env.DATABASE_URL || "postgresql://localhost:5432/placeholder",
   },
 });

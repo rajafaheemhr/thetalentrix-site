@@ -185,7 +185,7 @@ export default function HireTalent() {
                         <FormItem>
                           <FormLabel>Phone Number *</FormLabel>
                           <FormControl>
-                            <Input type="tel" placeholder="(555) 123-4567" {...field} />
+                            <Input type="tel" placeholder="(92) 346-1213444" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
