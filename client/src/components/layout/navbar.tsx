@@ -1,18 +1,26 @@
+
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Menu, ChevronDown } from "lucide-react";
 import logoPath from "@assets/thetalentrix_logo_1753289467568.jpg";
 
 const navigation = [
   { name: "Home", href: "/" },
-  { name: "Jobs", href: "/jobs" },
-  { name: "Join Talent Pool", href: "/talent-pool" },
-  { name: "Resume Builder", href: "/resume-builder" },
-  { name: "Interview Tips", href: "/interview-tips" },
-  { name: "Hire Talent", href: "/hire-talent" },
-  { name: "Contact", href: "/contact" },
+  {
+    name: "For Job Seekers",
+    children: [
+      { name: "Jobs", href: "/jobs" },
+      { name: "Interview Tips", href: "/interview-tips" },
+      { name: "Resume Builder", href: "/resume-builder" },
+      { name: "Join Talent Pool", href: "/talent-pool" }
+    ]
+  },
+  { name: "For Employers", href: "/hire-talent" },
+  { name: "Blog", href: "/blog" },
+  { name: "Contact", href: "/contact" }
 ];
 
 export default function Navbar() {
@@ -32,17 +40,37 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
             {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  location === item.href
-                    ? "text-primary"
-                    : "text-gray-600"
-                }`}
-              >
-                {item.name}
-              </Link>
+              item.children ? (
+                <DropdownMenu key={item.name}>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" className="text-sm font-medium transition-colors hover:text-primary text-gray-600 p-0 h-auto">
+                      {item.name}
+                      <ChevronDown className="ml-1 h-4 w-4" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="start" className="w-48">
+                    {item.children.map((child) => (
+                      <DropdownMenuItem key={child.name} asChild>
+                        <Link href={child.href} className="w-full cursor-pointer">
+                          {child.name}
+                        </Link>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`text-sm font-medium transition-colors hover:text-primary ${
+                    location === item.href
+                      ? "text-primary"
+                      : "text-gray-600"
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              )
             ))}
           </div>
 
@@ -57,18 +85,38 @@ export default function Navbar() {
               <SheetContent side="right" className="w-80">
                 <div className="flex flex-col space-y-4 mt-8">
                   {navigation.map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      onClick={() => setIsOpen(false)}
-                      className={`text-lg font-medium transition-colors hover:text-primary ${
-                        location === item.href
-                          ? "text-primary"
-                          : "text-gray-600"
-                      }`}
-                    >
-                      {item.name}
-                    </Link>
+                    item.children ? (
+                      <div key={item.name} className="space-y-2">
+                        <div className="text-lg font-semibold text-primary">
+                          {item.name}
+                        </div>
+                        <div className="pl-4 space-y-2">
+                          {item.children.map((child) => (
+                            <Link
+                              key={child.name}
+                              href={child.href}
+                              onClick={() => setIsOpen(false)}
+                              className="block text-md font-medium transition-colors hover:text-primary text-gray-600"
+                            >
+                              {child.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    ) : (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        onClick={() => setIsOpen(false)}
+                        className={`text-lg font-medium transition-colors hover:text-primary ${
+                          location === item.href
+                            ? "text-primary"
+                            : "text-gray-600"
+                        }`}
+                      >
+                        {item.name}
+                      </Link>
+                    )
                   ))}
                 </div>
               </SheetContent>
@@ -79,3 +127,6 @@ export default function Navbar() {
     </nav>
   );
 }
+
+
+

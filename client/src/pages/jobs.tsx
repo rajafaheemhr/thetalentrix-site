@@ -19,19 +19,137 @@ interface Job {
   description: string;
 }
 
+function formatPostedDate(dateStr: string) {
+  const date = new Date(dateStr);
+  const now = new Date();
+  const diffMs = now.getTime() - date.getTime();
+  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+  if (diffDays === 0) return "Today";
+  if (diffDays === 1) return "1 day ago";
+  return `${diffDays} days ago`;
+}
+
 export default function Jobs() {
   const [searchTerm, setSearchTerm] = useState("");
   const [locationFilter, setLocationFilter] = useState("");
 
   const { data: jobs, isLoading, error } = useQuery<Job[]>({
     queryKey: ['/api/jobs'],
+    queryFn: async () =>
+      [
+        {
+          id: 1,
+          title: "Frontend Developer",
+          company: "Talentrix",
+          location: "Islamabad",
+          salary: "Rs. 150,000",
+          type: "Full-Time",
+          postedDate: new Date().toISOString(),
+          description: "Build modern web apps with React and TypeScript."
+        },
+        {
+          id: 2,
+          title: "Backend Engineer",
+          company: "Brisc AI",
+          location: "Karachi",
+          salary: "Rs. 200,000",
+          type: "Remote",
+          postedDate: new Date(Date.now() - 86400000).toISOString(),
+          description: "Design scalable APIs and work with cloud infrastructure."
+        },
+        {
+          id: 3,
+          title: "UI/UX Designer",
+          company: "Analytico",
+          location: "Lahore",
+          salary: "Rs. 120,000",
+          type: "Contract",
+          postedDate: new Date(Date.now() - 2 * 86400000).toISOString(),
+          description: "Create beautiful and user-friendly interfaces for web and mobile."
+        },
+        {
+          id: 4,
+          title: "Project Manager",
+          company: "Siffar",
+          location: "Rawalpindi",
+          salary: "Rs. 180,000",
+          type: "Full-Time",
+          postedDate: new Date(Date.now() - 3 * 86400000).toISOString(),
+          description: "Lead teams and manage software projects."
+        },
+        {
+          id: 5,
+          title: "QA Engineer",
+          company: "Ring Office",
+          location: "Faisalabad",
+          salary: "Rs. 110,000",
+          type: "Contract",
+          postedDate: new Date(Date.now() - 4 * 86400000).toISOString(),
+          description: "Test and ensure software quality."
+        },
+        {
+          id: 6,
+          title: "DevOps Engineer",
+          company: "Brisc AI",
+          location: "Multan",
+          salary: "Rs. 170,000",
+          type: "Full-Time",
+          postedDate: new Date(Date.now() - 5 * 86400000).toISOString(),
+          description: "Automate deployments and manage cloud infrastructure."
+        },
+        {
+          id: 7,
+          title: "Support Specialist",
+          company: "Talentrix",
+          location: "Peshawar",
+          salary: "Rs. 90,000",
+          type: "Full-Time",
+          postedDate: new Date(Date.now() - 6 * 86400000).toISOString(),
+          description: "Provide technical support to clients."
+        },
+        {
+          id: 8,
+          title: "Network Engineer",
+          company: "Analytico",
+          location: "Quetta",
+          salary: "Rs. 130,000",
+          type: "Contract",
+          postedDate: new Date(Date.now() - 7 * 86400000).toISOString(),
+          description: "Manage and troubleshoot network infrastructure."
+        },
+        {
+          id: 9,
+          title: "Sales Executive",
+          company: "Siffar",
+          location: "Sialkot",
+          salary: "Rs. 100,000",
+          type: "Full-Time",
+          postedDate: new Date(Date.now() - 8 * 86400000).toISOString(),
+          description: "Drive sales and build client relationships."
+        },
+        {
+          id: 10,
+          title: "Content Writer",
+          company: "Ring Office",
+          location: "Gujranwala",
+          salary: "Rs. 80,000",
+          type: "Remote",
+          postedDate: new Date(Date.now() - 9 * 86400000).toISOString(),
+          description: "Write engaging content for web and social media."
+        }
+      ],
   });
+
+  // Get unique locations for filter dropdown
+  const locationOptions = jobs
+    ? Array.from(new Set(jobs.map(job => job.location.toLowerCase())))
+    : [];
 
   const filteredJobs = jobs?.filter(job => {
     const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          job.company.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesLocation = !locationFilter || locationFilter === "all" || 
-                           job.location.toLowerCase().includes(locationFilter.toLowerCase());
+    const matchesLocation = !locationFilter || locationFilter === "all" ||
+      job.location.toLowerCase() === locationFilter.toLowerCase();
     return matchesSearch && matchesLocation;
   }) || [];
 
@@ -79,6 +197,7 @@ export default function Jobs() {
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
               <Input
+                aria-label="Search jobs or companies"
                 placeholder="Search jobs or companies..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -91,13 +210,12 @@ export default function Jobs() {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All Locations</SelectItem>
-                <SelectItem value="remote">Remote</SelectItem>
-                <SelectItem value="new york">New York</SelectItem>
-                <SelectItem value="san francisco">San Francisco</SelectItem>
-                <SelectItem value="los angeles">Los Angeles</SelectItem>
+                {locationOptions.map((loc) => (
+                  <SelectItem key={loc} value={loc}>{loc.charAt(0).toUpperCase() + loc.slice(1)}</SelectItem>
+                ))}
               </SelectContent>
             </Select>
-            <Button className="btn-talentrix">
+            <Button className="btn-talentrix" aria-label="Search Jobs">
               <Search className="h-4 w-4 mr-2" />
               Search Jobs
             </Button>
@@ -175,15 +293,15 @@ export default function Jobs() {
                     </div>
                     <div className="flex items-center">
                       <Clock className="h-4 w-4 mr-1" />
-                      Posted {job.postedDate}
+                      Posted {formatPostedDate(job.postedDate)}
                     </div>
                   </div>
                   
                   <p className="text-gray-700 mb-6 line-clamp-3">{job.description}</p>
                   
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-500">Posted {job.postedDate}</span>
-                    <Button className="btn-talentrix-outline">
+                    <span className="text-sm text-gray-500">Posted {formatPostedDate(job.postedDate)}</span>
+                    <Button className="btn-talentrix-outline" aria-label={`Apply for ${job.title}`}>
                       Apply Now
                     </Button>
                   </div>

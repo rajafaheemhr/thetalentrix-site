@@ -10,8 +10,24 @@ import {
   Clock,
   Shield
 } from "lucide-react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/autoplay";
 
 const services = [
+  {
+    icon: Handshake,
+    title: "Browse Jobs",
+    description: "Discover amazing career opportunities from top companies",
+    href: "/jobs"
+  },
+  {
+    icon: Users,
+    title: "Join Talent Pool",
+    description: "Get matched with exclusive opportunities that align with your skills",
+    href: "/talent-pool"
+  },
   {
     icon: FileText,
     title: "Resume Builder",
@@ -25,14 +41,8 @@ const services = [
     href: "/interview-tips"
   },
   {
-    icon: Handshake,
-    title: "Job Matching",
-    description: "AI-powered matching system connecting you with perfect opportunities",
-    href: "/jobs"
-  },
-  {
     icon: Building,
-    title: "Hiring Services",
+    title: "Hire Talent",
     description: "End-to-end recruitment solutions for companies of all sizes",
     href: "/hire-talent"
   }
@@ -46,8 +56,8 @@ const testimonials = [
     content: "Talentrix helped me land my dream job at a Fortune 500 company. Their personalized approach and expert guidance made all the difference."
   },
   {
-    name: "Michael Chen",
-    role: "CEO, TechStart Inc.",
+    name: "Nishan Singh",
+    role: "CEO, Analytico.",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
     content: "Outstanding service! They found the perfect candidates for our startup. The quality of talent and speed of delivery exceeded our expectations."
   },
@@ -85,12 +95,12 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/jobs">
                   <Button size="lg" className="btn-gradient text-white font-semibold px-8 py-3 rounded-full">
-                    Explore Jobs 🔍
+                    Explore Jobs 
                   </Button>
                 </Link>
                 <Link href="/talent-pool">
                   <Button size="lg" className="bg-white/20 backdrop-blur-md border-white/30 text-white hover:bg-white/30 rounded-full px-8 py-3 font-semibold neon-accent">
-                    Join Talent Pool 💼
+                    Join Talent Pool 
                   </Button>
                 </Link>
               </div>
@@ -144,7 +154,7 @@ export default function Home() {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6">Our Services 💫</h2>
+            <h2 className="text-4xl font-bold mb-6">Our Services </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Comprehensive recruitment solutions designed to accelerate your career journey
             </p>
@@ -162,7 +172,7 @@ export default function Home() {
                   <p className="text-gray-600 mb-6">{service.description}</p>
                   <Link href={service.href}>
                     <Button className="btn-gradient text-white rounded-full px-6 py-2 text-sm font-semibold">
-                      Get Started ⚡
+                      Get Started 
                     </Button>
                   </Link>
                 </CardContent>
@@ -204,32 +214,62 @@ export default function Home() {
 
           {/* Partner Company Logos */}
           <h2 className="text-4xl font-bold mb-6 text-center mt-16">Trusted By our Partners</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-10 items-center justify-center my-8">
-            <img
-              src="https://cdn-cliej.nitrocdn.com/wgZiPBuapcaGENrRxsBuGekXzvRJGrBF/assets/images/optimized/rev-d940329/apimio.com/wp-content/uploads/2021/05/cropped-frompsdapimio-e1621591394673.png"
-              alt="Apimio"
-              className="h-12 object-contain"
-            />
-            <img
-              src="https://ringoffice.com/wp-content/uploads/2025/03/Asset-3@4x-1-1024x296.webp"
-              alt="Ring Office"
-              className="h-12 object-contain"
-            />
-            <img
-              src="https://cdn-edepf.nitrocdn.com/tPDQwwltJkKRVcYDAvZvZUoJoKSDAwlD/assets/images/optimized/rev-17d0dd8/siffar.com/wp-content/uploads/2024/11/siffar-logo-png-e1606198668642.png"
-              alt="Siffar"
-              className="h-12 object-contain"
-            />
-            <img
-              src="https://www.analyticodigital.com/wp-content/uploads/2024/07/analytico-logo-300x56.webp"
-              alt="Analytico"
-              className="h-12 object-contain"
-            />
-             <img
-              src="https://brisc.ai/hubfs/White%20brisc%20wordmark.svg"
-              alt="Brisc AI"
-              className="h-12 object-contain"
-              />
+          <div className="my-8">
+            <Swiper
+              modules={[Autoplay]}
+              spaceBetween={30}
+              slidesPerView={3}
+              loop={true}
+              autoplay={{
+                delay: 0,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
+              speed={3000}
+              breakpoints={{
+                640: { slidesPerView: 3 },
+                768: { slidesPerView: 4 },
+                1024: { slidesPerView: 6 },
+              }}
+              style={{ padding: "20px 0" }}
+            >
+              <SwiperSlide>
+                <img
+                  src="https://cdn-cliej.nitrocdn.com/wgZiPBuapcaGENrRxsBuGekXzvRJGrBF/assets/images/optimized/rev-d940329/apimio.com/wp-content/uploads/2021/05/cropped-frompsdapimio-e1621591394673.png"
+                  alt="Apimio"
+                  className="h-12 object-contain mx-auto"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src="https://ringoffice.com/wp-content/uploads/2025/03/Asset-3@4x-1-1024x296.webp"
+                  alt="Ring Office"
+                  className="h-12 object-contain mx-auto"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src="https://cdn-edepf.nitrocdn.com/tPDQwwltJkKRVcYDAvZvZUoJoKSDAwlD/assets/images/optimized/rev-17d0dd8/siffar.com/wp-content/uploads/2024/11/siffar-logo-png-e1606198668642.png"
+                  alt="Siffar"
+                  className="h-12 object-contain mx-auto"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src="https://www.analyticodigital.com/wp-content/uploads/2024/07/analytico-logo-300x56.webp"
+                  alt="Analytico"
+                  className="h-12 object-contain mx-auto"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src="https://brisc.ai/hubfs/White%20brisc%20wordmark.svg"
+                  alt="Brisc AI"
+                  className="h-12 object-contain mx-auto"
+                />
+              </SwiperSlide>
+              {/* Add more SwiperSlide components for additional logos if needed */}
+            </Swiper>
           </div>
         </div>
       </section>

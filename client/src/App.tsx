@@ -13,7 +13,9 @@ import ResumeBuilder from "@/pages/resume-builder";
 import InterviewTips from "@/pages/interview-tips";
 import HireTalent from "@/pages/hire-talent";
 import Contact from "@/pages/contact";
-import NotFound from "@/pages/not-found";
+import Blog from "@/pages/blog";
+import Pricing from "@/pages/pricing";
+
 
 function Router() {
   return (
@@ -28,7 +30,9 @@ function Router() {
           <Route path="/interview-tips" component={InterviewTips} />
           <Route path="/hire-talent" component={HireTalent} />
           <Route path="/contact" component={Contact} />
-          <Route component={NotFound} />
+          <Route path="/blog" component={Blog} />
+          <Route path="/pricing" component={Pricing} />
+
         </Switch>
       </main>
       <Footer />

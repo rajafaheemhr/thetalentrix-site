@@ -20,6 +20,12 @@ const talentPoolSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
   phone: z.string().min(10, "Please enter a valid phone number"),
   role: z.string().min(1, "Please select a desired role"),
+  jobType: z.string().min(1, "Please select a job type"),
+  expectedSalary: z.string().optional(),
+  industry: z.string().min(1, "Please select an industry"),
+  noticePeriod: z.string().min(1, "Please select notice period"),
+  linkedIn: z.string().optional(),
+  portfolio: z.string().optional(),
   experience: z.string().optional(),
   termsAgree: z.boolean().refine(val => val === true, "You must agree to the terms"),
 });
@@ -38,6 +44,12 @@ export default function TalentPool() {
       email: "",
       phone: "",
       role: "",
+      jobType: "",
+      expectedSalary: "",
+      industry: "",
+      noticePeriod: "",
+      linkedIn: "",
+      portfolio: "",
       experience: "",
       termsAgree: false,
     },
@@ -191,6 +203,128 @@ export default function TalentPool() {
                             <SelectItem value="other">Other</SelectItem>
                           </SelectContent>
                         </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <FormField
+                    control={form.control}
+                    name="jobType"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Job Type Preference *</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select job type" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="on-site">On-site</SelectItem>
+                            <SelectItem value="hybrid">Hybrid</SelectItem>
+                            <SelectItem value="remote">Remote</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="expectedSalary"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Expected Salary Range</FormLabel>
+                        <FormControl>
+                          <Input placeholder="e.g. Rs. 100,000 - Rs. 150,000" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <FormField
+                    control={form.control}
+                    name="industry"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Preferred Industry *</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select industry" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="it">IT</SelectItem>
+                            <SelectItem value="finance">Finance</SelectItem>
+                            <SelectItem value="marketing">Marketing</SelectItem>
+                            <SelectItem value="sales">Sales</SelectItem>
+                            <SelectItem value="healthcare">Healthcare</SelectItem>
+                            <SelectItem value="education">Education</SelectItem>
+                            <SelectItem value="other">Other</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="noticePeriod"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Notice Period / Availability *</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select notice period" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="immediate">Immediate</SelectItem>
+                            <SelectItem value="15-days">15 Days</SelectItem>
+                            <SelectItem value="1-month">1 Month</SelectItem>
+                            <SelectItem value="2-months">2 Months</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <FormField
+                    control={form.control}
+                    name="linkedIn"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>LinkedIn Profile (optional)</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Paste your LinkedIn profile URL" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="portfolio"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Portfolio/Website (optional)</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Paste your portfolio or website URL" {...field} />
+                        </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}

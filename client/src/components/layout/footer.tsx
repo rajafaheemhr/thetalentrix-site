@@ -49,7 +49,7 @@ export default function Footer() {
             <ul className="space-y-2">
               <li><Link href="/hire-talent" className="text-gray-300 hover:text-primary transition-colors">Hire Talent</Link></li>
               <li><a href="#" className="text-gray-300 hover:text-primary transition-colors">Post Jobs</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-primary transition-colors">Pricing</a></li>
+              <li><Link href="/pricing" className="text-gray-300 hover:text-primary transition-colors">Pricing</Link></li>
               <li><a href="#" className="text-gray-300 hover:text-primary transition-colors">Success Stories</a></li>
             </ul>
           </div>
@@ -61,7 +61,7 @@ export default function Footer() {
               <li><Link href="/" className="text-gray-300 hover:text-primary transition-colors">About Us</Link></li>
               <li><Link href="/contact" className="text-gray-300 hover:text-primary transition-colors">Contact</Link></li>
               <li><a href="#" className="text-gray-300 hover:text-primary transition-colors">Careers</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-primary transition-colors">Blog</a></li>
+              <li><Link href="/blog" className="text-gray-300 hover:text-primary transition-colors">Blog</Link></li>
             </ul>
           </div>
         </div>
