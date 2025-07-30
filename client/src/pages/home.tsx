@@ -159,20 +159,20 @@ export default function Home() {
               Comprehensive recruitment solutions designed to accelerate your career journey
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
             {services.map((service, index) => (
-              <Card key={index} className="modern-card group neon-accent">
-                <CardContent className="p-8">
-                  <div className="service-icon group-hover:scale-110 transition-transform duration-300 mb-4">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mb-4">
+              <Card key={index} className="modern-card group neon-accent h-full">
+                <CardContent className="p-6 text-center flex flex-col h-full">
+                  <div className="service-icon group-hover:scale-110 transition-transform duration-300 mx-auto mb-6">
+                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
                       <service.icon className="h-8 w-8 text-white" />
                     </div>
                   </div>
                   <h3 className="text-xl font-semibold mb-4">{service.title}</h3>
-                  <p className="text-gray-600 mb-6">{service.description}</p>
+                  <p className="text-gray-600 mb-6 flex-grow">{service.description}</p>
                   <Link href={service.href}>
-                    <Button className="btn-gradient text-white rounded-full px-6 py-2 text-sm font-semibold">
-                      Get Started 
+                    <Button className="btn-gradient text-white rounded-full px-6 py-2 text-sm font-semibold w-full">
+                      Get Started
                     </Button>
                   </Link>
                 </CardContent>
@@ -213,12 +213,12 @@ export default function Home() {
           </div>
 
           {/* Partner Company Logos */}
-          <h2 className="text-4xl font-bold mb-6 text-center mt-16">Trusted By our Partners</h2>
+          <h2 className="text-4xl font-bold mb-12 text-center mt-16">Trusted By our Partners</h2>
           <div className="my-8">
             <Swiper
               modules={[Autoplay]}
-              spaceBetween={30}
-              slidesPerView={3}
+              spaceBetween={40}
+              slidesPerView={2}
               loop={true}
               autoplay={{
                 delay: 0,
@@ -229,46 +229,55 @@ export default function Home() {
               breakpoints={{
                 640: { slidesPerView: 3 },
                 768: { slidesPerView: 4 },
-                1024: { slidesPerView: 6 },
+                1024: { slidesPerView: 5 },
               }}
               style={{ padding: "20px 0" }}
             >
               <SwiperSlide>
-                <img
-                  src="https://cdn-cliej.nitrocdn.com/wgZiPBuapcaGENrRxsBuGekXzvRJGrBF/assets/images/optimized/rev-d940329/apimio.com/wp-content/uploads/2021/05/cropped-frompsdapimio-e1621591394673.png"
-                  alt="Apimio"
-                  className="h-12 object-contain mx-auto"
-                />
+                <div className="flex items-center justify-center h-20 px-4 bg-white rounded-lg shadow-sm border border-gray-100">
+                  <img
+                    src="https://cdn-cliej.nitrocdn.com/wgZiPBuapcaGENrRxsBuGekXzvRJGrBF/assets/images/optimized/rev-d940329/apimio.com/wp-content/uploads/2021/05/cropped-frompsdapimio-e1621591394673.png"
+                    alt="Apimio"
+                    className="max-h-10 max-w-full object-contain"
+                  />
+                </div>
               </SwiperSlide>
               <SwiperSlide>
-                <img
-                  src="https://ringoffice.com/wp-content/uploads/2025/03/Asset-3@4x-1-1024x296.webp"
-                  alt="Ring Office"
-                  className="h-12 object-contain mx-auto"
-                />
+                <div className="flex items-center justify-center h-20 px-4 bg-white rounded-lg shadow-sm border border-gray-100">
+                  <img
+                    src="https://ringoffice.com/wp-content/uploads/2025/03/Asset-3@4x-1-1024x296.webp"
+                    alt="Ring Office"
+                    className="max-h-10 max-w-full object-contain"
+                  />
+                </div>
               </SwiperSlide>
               <SwiperSlide>
-                <img
-                  src="https://cdn-edepf.nitrocdn.com/tPDQwwltJkKRVcYDAvZvZUoJoKSDAwlD/assets/images/optimized/rev-17d0dd8/siffar.com/wp-content/uploads/2024/11/siffar-logo-png-e1606198668642.png"
-                  alt="Siffar"
-                  className="h-12 object-contain mx-auto"
-                />
+                <div className="flex items-center justify-center h-20 px-4 bg-white rounded-lg shadow-sm border border-gray-100">
+                  <img
+                    src="https://cdn-edepf.nitrocdn.com/tPDQwwltJkKRVcYDAvZvZUoJoKSDAwlD/assets/images/optimized/rev-17d0dd8/siffar.com/wp-content/uploads/2024/11/siffar-logo-png-e1606198668642.png"
+                    alt="Siffar"
+                    className="max-h-10 max-w-full object-contain"
+                  />
+                </div>
               </SwiperSlide>
               <SwiperSlide>
-                <img
-                  src="https://www.analyticodigital.com/wp-content/uploads/2024/07/analytico-logo-300x56.webp"
-                  alt="Analytico"
-                  className="h-12 object-contain mx-auto"
-                />
+                <div className="flex items-center justify-center h-20 px-4 bg-white rounded-lg shadow-sm border border-gray-100">
+                  <img
+                    src="https://www.analyticodigital.com/wp-content/uploads/2024/07/analytico-logo-300x56.webp"
+                    alt="Analytico"
+                    className="max-h-10 max-w-full object-contain"
+                  />
+                </div>
               </SwiperSlide>
               <SwiperSlide>
-                <img
-                  src="https://brisc.ai/hubfs/White%20brisc%20wordmark.svg"
-                  alt="Brisc AI"
-                  className="h-12 object-contain mx-auto"
-                />
+                <div className="flex items-center justify-center h-20 px-4 bg-white rounded-lg shadow-sm border border-gray-100">
+                  <img
+                    src="https://brisc.ai/hubfs/White%20brisc%20wordmark.svg"
+                    alt="Brisc AI"
+                    className="max-h-10 max-w-full object-contain"
+                  />
+                </div>
               </SwiperSlide>
-              {/* Add more SwiperSlide components for additional logos if needed */}
             </Swiper>
           </div>
         </div>

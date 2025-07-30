@@ -362,16 +362,19 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #f8f9fa;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(267, 100%, 59%);
+  background: #cbd5e1;
   border-radius: 4px;
+  min-height: 40px;
+  background-clip: padding-box;
+  border: 1px solid transparent;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(267, 100%, 50%);
+  background: #94a3b8;
 }
 
 /* Responsive adjustments */

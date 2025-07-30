@@ -15,6 +15,9 @@ import HireTalent from "@/pages/hire-talent";
 import Contact from "@/pages/contact";
 import Blog from "@/pages/blog";
 import Pricing from "@/pages/pricing";
+import About from "@/pages/about";
+import PrivacyPolicy from "@/pages/privacy-policy";
+import Chatbot from "@/components/chatbot";
 
 
 function Router() {
@@ -32,11 +35,14 @@ function Router() {
           <Route path="/contact" component={Contact} />
           <Route path="/blog" component={Blog} />
           <Route path="/pricing" component={Pricing} />
+          <Route path="/about" component={About} />
+          <Route path="/privacy-policy" component={PrivacyPolicy} />
 
         </Switch>
       </main>
       <Footer />
       <WhatsAppWidget />
+      <Chatbot />
     </div>
   );
 }
